@@ -1,6 +1,5 @@
 epipe
 =====
-> elastic http-pipe for debuging of web project
 
 > epipe是一个方便Web项目调试、检测的开源项目；
 
@@ -27,7 +26,7 @@ epipe
 
 - 使用交互命令设置参数
 
-、、、js
+```js
     epipe
     > listen 8188
     > mod fengchao
