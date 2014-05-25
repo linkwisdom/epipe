@@ -1,0 +1,33 @@
+{
+  "author": {
+    "name": "liandong liu"
+  },
+  "name": "epipe",
+  "description": "epipe - elabrary http-request pipe for debug or monitor",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/linkwisdom/epipe.git"
+  },
+  "main": "./src/index.js",
+  "keywords": [
+    "debug",
+    "pipe"
+  ],
+  "dependencies": {
+    "http-proxy": "<=0.10.4",
+    "request": ">=2.1.0",
+    "conser": ">=0.0.1",
+    "loconf": ">=0.0.1"
+  },
+  "bin": {
+    "epipe": "./bin/epipe"
+  },
+  "scripts": {
+    "run": "node src/index.js",
+    "test": "node-inspector ./test"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
