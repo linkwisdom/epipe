@@ -61,7 +61,9 @@ exports.request = function (req) {
         req.handler = 'proxy';
     }
 
-    if (query.hostname == 'fengchao.baidu.com') {
+    if (query.hostname == 'fengchao.baidu.com'
+        || query.hostname == 'fc-offline.badiu.com'
+        ) {
         exports.ajaxRequest(req);
         exports.staticRequest(req);
     }

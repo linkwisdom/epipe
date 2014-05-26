@@ -1,8 +1,8 @@
 var conser = require('conser');
 var pipe = require('./index');
 
-function includeFile(modFile) {
-    var absPath = require('path').resolve(process.cwd(), modFile);
+function includeFile(modFile, cwd) {
+    var absPath = require('path').resolve(cwd || process.cwd(), modFile);
     try {
         var fiddle = require(absPath);
         pipe.addFiddle(fiddle);
@@ -37,9 +37,6 @@ function mod(mod) {
 
 // cli inter
 exports.main = function (argv) {
-    var fengchao = require('../rules/fengchao');
-    pipe.addFiddle(fengchao);
-
     conser.include({
         include: includeFile,
         showlog: showLog,
@@ -68,6 +65,12 @@ exports.main = function (argv) {
 
     if (context.debug) {
         debug(context.debug);
+    }
+
+    if (context.file) {
+        includeFile(context.file);
+    } else {
+        includeFile('../rules/fengchao', __dirname);
     }
 
     pipe.listen(context.port || 8188);
