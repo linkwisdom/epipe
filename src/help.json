@@ -1,0 +1,14 @@
+{
+    "close": "close [port] 关闭代理端口",
+    "listen": "listen port 创建代理端口",
+    "addFiddle": "addFiddle [规则文件绝对路径] 加载规则文件",
+    "help": "help [cmd] 显示命令帮助",
+    "include": "include [规则文件相对路径] 加载规则文件",
+    "showlog": "sholog 显示网络日志",
+    "hidelog": "hidelog 隐藏网络日志",
+    "debug": "debug [true/false/debugMod] 设定/显示调试模式",
+    "mod": "mod [modName] 指定/显示规则模块名",
+    "info": "info 显示状态信息",
+    "ports": "ports 显示当前打开的所有端口",
+    "fiddler": "fiddler [modname] 指定/显示规则集合"
+}

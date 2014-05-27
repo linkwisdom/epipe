@@ -1,80 +1,64 @@
 var conser = require('conser');
 var pipe = require('./index');
 
-function includeFile(modFile, cwd) {
-    var absPath = require('path').resolve(cwd || process.cwd(), modFile);
-    try {
-        var fiddle = require(absPath);
-        pipe.addFiddle(fiddle);
-    } catch(ex) {
-        console.error(ex);
+var ext = require('./extension');
+var help = require('./help');
+
+for (var h in help) {
+    if (pipe.hasOwnProperty(h)) {
+        pipe[h].help = '\t >\t' + help[h];
+    } else if (ext.hasOwnProperty(h)) {
+        ext[h].help = '\t >\t' + help[h];
     }
 }
 
-function log(request) {
-   var query = request.query;
-   console.log('%s [%s]', request.method, request.url);
-}
-
-function showLog() {
-    pipe.on('request', log);
-    return 'showlog';
-}
-
-function hideLog() {
-    pipe.remove('request', log);
-    return 'hidelog';
-}
-
-function debug(type) {
-    process.debugType = type;
-};
-
-function mod(mod) {
-    process.modType = mod;
-};
-
-
 // cli inter
 exports.main = function (argv) {
-    conser.include({
-        include: includeFile,
-        showlog: showLog,
-        hidelog: hideLog,
-        debug: debug,
-        mod: mod
-    });
-
-    conser.include(pipe);
-
     var context = {};
     for (var i = 2; i < argv.length; i++) {
         var term = argv[i];
         var sterm = term.split('=');
         if (sterm.length == 2) {
             context[sterm[0]] = sterm[1];
-        } else if (i < option.length) {
-            context[option[i]] = term;
+        } else if (i < argv.length) {
+            context[term] = true;
         }
     }
 
+    // 指定规则文件
+    if (context.file) {
+        var name = ext.include(context.file);
+        if (name) {
+            pipe.fiddle(name);
+        }
+    } else {
+        ext.include('../rules/fengchao', __dirname);
+    }
+
+    // 指定模块名称
     if (context.mod) {
-        mod(context.mod);
+        ext.mod(context.mod);
         pipe.fiddle(context.mod);
     }
 
+    // 调试模式
     if (context.debug) {
-        debug(context.debug);
+        ext.debug(context.debug);
     }
 
-    if (context.file) {
-        includeFile(context.file);
-    } else {
-        includeFile('../rules/fengchao', __dirname);
+    // 代理端口
+    if (context.port) {
+        pipe.listen(context.port);
     }
 
-    pipe.listen(context.port || 8188);
-    conser.start();
+    process.debugType = false;
+
+    // 打开终端命令交互
+    if (context.conser) {
+        conser.include(ext);
+        conser.include(pipe);
+        conser.start();
+    }
 }
 
 if (process.argv[1] == __filename) {
