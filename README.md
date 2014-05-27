@@ -18,7 +18,7 @@ epipe
 
 ### 使用
 
-> epipe port=8188 mod=fengchao
+> epipe port=8188 mod=fengchao conser
 
 
 ## 参数说明
@@ -34,7 +34,10 @@ epipe
     <td>mod</td> <td>规则模块名</td> <td>指定当前使用规则集合 mod=fengchao</td>
 </tr>
 <tr>
-    <td>debug</td> <td>调试方式</td> <td>再规则中利用debug切换调试模式 默认debug=false</td>
+    <td>debug</td> <td>调试方式</td> <td>再规则中利用debug切换调试模式 默认false</td>
+</tr>
+<tr>
+    <td>conser</td> <td>打开命令行交互</td> <td> epipe conser 无需参数</td>
 </tr>
 </table>
 

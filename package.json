@@ -17,8 +17,7 @@
   "dependencies": {
     "http-proxy": "<=0.10.4",
     "request": ">=2.1.0",
-    "conser": ">=0.0.1",
-    "loconf": ">=0.0.1"
+    "conser": ">=0.0.1"
   },
   "bin": {
     "epipe": "./bin/epipe"
