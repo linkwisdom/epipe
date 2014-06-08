@@ -81,3 +81,33 @@ epipe
         <td>help</td> <td>显示可用命令及帮助</td> <td></td>
     </tr>
 </table>
+
+
+### nirvana / phoenix 用法说明
+
+- 启动本地开发环境，确定能够正常访问
+    - 访问 [phoenix](http://localhost:8848/nirvana-workspace/phoenix/home.html?userid=1233#/app/index)   
+
+- 启动 `epipe port=8189 mod=fengchao conser`
+    - port 表示代理端口
+    - mod 表示规则集合 nirvana/ phoenix 通用为fengchao
+    - conser 表示进入epipe命令交互方式
+
+- 配置本地http代理服务器，不要配置https代理
+    - http 代理 `127.0.0.1 8189`
+    - 确保'跳过本地地址的代理服务器'
+    - 建议用pac方式配置
+    - 参考内部代理pac http://uedc.baidu.com/proxy
+    - 联调 fctest配置host为对应服务器IP地址即可
+
+- 访问任意网站，在epipe命令中输入`showlog`检查是否显示历史记录
+
+- 访问nirvana / phoenix 是否能够正常访问及显示log
+
+- 进入联调模式，在epipe 中输入 `debug true`
+    - 输入info 查看状态信息
+    - `debug false` 退出联调模式
+
+
+
+
