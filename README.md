@@ -18,7 +18,7 @@ epipe
 
 ### 使用
 
-> epipe port=8188 mod=fengchao conser
+> epipe port=8189 mod=fengchao conser
 
 
 ## 参数说明
@@ -43,7 +43,7 @@ epipe
 
 - 使用自定义规则文件
 
-> epipe port=8188 mod=fengchao file=fengchao-pipe.js
+> epipe port=8189 mod=fengchao file=fengchao-pipe.js
 
 ## 交互命令
 
