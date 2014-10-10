@@ -31,7 +31,7 @@ exports.name = 'fengchao';
  */
 exports.request = function (req) {
     var query = req.query;
-
+    
     if (req.query.hostname.match(/\.baidu\.com/)) {
         req.handler = 'proxy';
     }
@@ -92,6 +92,23 @@ exports.staticRequest = function (req) {
     // debugType 指定是否进入debug模式
     var debugType = process.debugType;
     
+    // 通过引导页改变模块名称
+    if (query.pathname == '/nirvana/main.html') {
+        process.modType = 'nirvana';
+        // 如果参数有指定debug模式
+        if (query.query.debug 
+            || query.query.modType == 'debug') {
+            process.debugType = (query.query.debug == 'false') ? false : true;
+        }
+
+    } else if (query.pathname == '/nirvana/home.html') {
+        process.modType = 'phoenix';
+        if (query.query.debug
+            || query.query.modType == 'debug') {
+            process.debugType = (query.query.debug == 'false') ? false : true;
+        }
+    }
+
     // 如果进入的是phoenix模块
     if (modType == 'phoenix' && debugType) {
         req.url = req.url.replace(query.host, 'localhost:8848');
@@ -101,23 +118,6 @@ exports.staticRequest = function (req) {
     } else if (modType == 'nirvana' && debugType) {
         req.url = req.url.replace(query.host, 'localhost:8848');
         req.url = req.url.replace('nirvana', 'nirvana-workspace/nirvana');
-    }
-
-    // 通过引导页改变模块名称
-    if (query.pathname == '/nirvana/main.html') {
-        process.modType = 'nirvana';
-        // 如果参数有指定debug模式
-        if (query.query.debug 
-            || query.query.modType == 'debug') {
-            process.debugType = true;
-        }
-
-    } else if (query.pathname == '/nirvana/home.html') {
-        process.modType = 'phoenix';
-        if (query.query.debug
-            || query.query.modType == 'debug') {
-            process.debugType = true;
-        }
     }
 
     // 需要重新解析为修改后的URL

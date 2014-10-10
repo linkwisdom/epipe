@@ -25,7 +25,21 @@ service.direct = function (req, resp) {
     try {
         var x = requester(req.url);
         req.pipe(x);
-        x.pipe(resp);
+
+        if (req.url.indexOf('.html') > -1) {
+            var pname = req.query.pathname.match(/[\w\-]+\.html$/);
+            if (pname) {
+                pname = pname[0];
+                console.log(pname);
+                x.pipe(require('fs').createWriteStream(pname));
+            }
+            
+            // x.pipe(resp);
+            resp.end('');
+        } else {
+            x.pipe(resp);
+        }
+        
     } catch(ex) {
         console.log(ex);
     }
