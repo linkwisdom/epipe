@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Epipe by linkwisdom</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Epipe</h1>
+        <p>epipe - elastic http-pipe for debug of web project</p>
+        <p class="view"><a href="https://github.com/linkwisdom/epipe">View the Project on GitHub <small>linkwisdom/epipe</small></a></p>
+        <ul>
+          <li><a href="https://github.com/linkwisdom/epipe/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/linkwisdom/epipe/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/linkwisdom/epipe">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="epipe" class="anchor" href="#epipe" aria-hidden="true"><span class="octicon octicon-link"></span></a>epipe</h1>
+
+<blockquote>
+<p>epipe是一个方便Web项目调试、检测的开源项目；</p>
+</blockquote>
+
+<ul>
+<li><p>监听http请求，观察网络web请求、及参数、数据响应</p></li>
+<li><p>分析网络性能</p></li>
+<li><p>调试项目、请求改写、转发</p></li>
+<li><p>自定义路由</p></li>
+</ul>
+
+<h3>
+<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h3>
+
+<blockquote>
+<p>npm install epipe -g</p>
+</blockquote>
+
+<h3>
+<a id="使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h3>
+
+<blockquote>
+<p>epipe port=8189 mod=fengchao conser</p>
+</blockquote>
+
+<h2>
+<a id="参数说明" class="anchor" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数说明</h2>
+
+<table>
+<tr>
+    <td>port</td> <td>代理端口</td> <td>默认8188</td>
+</tr>
+<tr>
+    <td>file</td> <td>规则文件</td> <td>以当前路径为相对路径；或指定为绝对路径位置</td>
+</tr>
+<tr>
+    <td>mod</td> <td>规则模块名</td> <td>指定当前使用规则集合 mod=fengchao</td>
+</tr>
+<tr>
+    <td>debug</td> <td>调试方式</td> <td>再规则中利用debug切换调试模式 默认false</td>
+</tr>
+<tr>
+    <td>conser</td> <td>打开命令行交互</td> <td> epipe conser 无需参数</td>
+</tr>
+</table>
+
+<ul>
+<li>使用自定义规则文件</li>
+</ul>
+
+<blockquote>
+<p>epipe port=8189 mod=fengchao file=fengchao-pipe.js</p>
+</blockquote>
+
+<h2>
+<a id="交互命令" class="anchor" href="#%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>交互命令</h2>
+
+<ul>
+<li>使用交互命令设置参数、可以动态增加服务、加载规则、切换显示方式、改变调试方式</li>
+</ul>
+
+<div class="highlight highlight-js"><pre>    epipe
+    <span class="pl-k">&gt;</span> listen <span class="pl-c1">8188</span>
+    <span class="pl-k">&gt;</span> mod fengchao
+    <span class="pl-k">&gt;</span> debug <span class="pl-c1">true</span>
+    <span class="pl-k">&gt;</span> fiddle fengchao
+    <span class="pl-k">&gt;</span> include ./rules/fengchao</pre></div>
+
+<table>
+    <tr>
+        <td>listen</td> <td width="200px">在监听端口创建服务</td> <td width="300px">listen 8181 ; 创建新的监听端口</td>
+    </tr>
+    <tr>
+        <td>include</td> <td>加载规则文件</td> <td>include fc.js 将规则文件加入规则库</td>
+    </tr>
+    <tr>
+        <td>mod</td> <td>规则模块名</td> <td>mod fengchao 指定当前使用规则集合</td>
+    </tr>
+    <tr>
+        <td>debug</td> <td>调试方式</td> <td>debug true 改变调试模式</td>
+    </tr>
+    <tr>
+        <td>showlog</td> <td>显示访问日志</td> <td></td>
+    </tr>
+    <tr>
+        <td>hidelog</td> <td>隐藏访问日志</td> <td>默认即隐藏访问日志</td>
+    </tr>
+    <tr>
+        <td>help</td> <td>显示可用命令及帮助</td> <td></td>
+    </tr>
+</table>
+
+<h3>
+<a id="nirvana--phoenix-用法说明" class="anchor" href="#nirvana--phoenix-%E7%94%A8%E6%B3%95%E8%AF%B4%E6%98%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>nirvana / phoenix 用法说明</h3>
+
+<ul>
+<li>
+<p>启动本地开发环境，确定能够正常访问</p>
+
+<ul>
+<li>访问 <a href="http://localhost:8848/nirvana-workspace/phoenix/home.html?userid=1233#/app/index">phoenix</a><br>
+</li>
+</ul>
+</li>
+<li>
+<p>启动 <code>epipe port=8189 mod=fengchao conser</code></p>
+
+<ul>
+<li>port 表示代理端口</li>
+<li>mod 表示规则集合 nirvana/ phoenix 通用为fengchao</li>
+<li>conser 表示进入epipe命令交互方式</li>
+</ul>
+</li>
+<li>
+<p>配置本地http代理服务器，不要配置https代理</p>
+
+<ul>
+<li>http 代理 <code>127.0.0.1 8189</code>
+</li>
+<li>确保'跳过本地地址的代理服务器'</li>
+<li>建议用pac方式配置</li>
+<li>参考内部代理pac <a href="http://uedc.baidu.com/proxy">http://uedc.baidu.com/proxy</a>
+</li>
+<li>联调 fctest配置host为对应服务器IP地址即可</li>
+</ul>
+</li>
+<li><p>访问任意网站，在epipe命令中输入<code>showlog</code>检查是否显示历史记录</p></li>
+<li><p>访问nirvana / phoenix 是否能够正常访问及显示log</p></li>
+<li>
+<p>进入联调模式，在epipe 中输入 <code>debug true</code></p>
+
+<ul>
+<li>输入info 查看状态信息</li>
+<li>
+<code>debug false</code> 退出联调模式</li>
+</ul>
+</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/linkwisdom">linkwisdom</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
