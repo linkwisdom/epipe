@@ -25,11 +25,22 @@ exports.main = function (argv) {
         }
     }
 
+    if (require('fs').existsSync('./epipe-rules.js')) {
+        context.file = require('path').resolve(process.cwd(), './epipe-rules.js');
+        var fid = ext.include(context.file);
+        var conf = fid.config;
+        for (var key in conf) {
+            if (conf.hasOwnProperty(key)) {
+                context[key] = conf[key];
+            }
+        }
+    }
+
     // 指定规则文件
     if (context.file) {
-        var name = ext.include(context.file);
-        if (name) {
-            pipe.fiddle(name);
+        var fid = ext.include(context.file);
+        if (fid && fid.name) {
+            pipe.fiddle(fid.name);
         }
     } else {
         ext.include('../rules/fengchao', __dirname);

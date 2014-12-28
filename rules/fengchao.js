@@ -91,7 +91,7 @@ exports.staticRequest = function (req) {
 
     // debugType 指定是否进入debug模式
     var debugType = process.debugType;
-    
+
     // 通过引导页改变模块名称
     if (query.pathname == '/nirvana/main.html') {
         process.modType = 'nirvana';
@@ -112,12 +112,17 @@ exports.staticRequest = function (req) {
     // 如果进入的是phoenix模块
     if (modType == 'phoenix' && debugType) {
         req.url = req.url.replace(query.host, 'localhost:8848');
-        req.url = req.url.replace('nirvana', 'nirvana-workspace/phoenix');
-
-    // 如果当前是nirvana模块
+        req.url = req.url.replace('/nirvana/', '/nirvana-workspace/phoenix/');
+        // 合并后没有common目录了
+        req.url = req.url.replace('/phoenix/src/common/', '/nirvana/src/common/');
+    
+        // 如果当前是nirvana模块
     } else if (modType == 'nirvana' && debugType) {
         req.url = req.url.replace(query.host, 'localhost:8848');
-        req.url = req.url.replace('nirvana', 'nirvana-workspace/nirvana');
+        req.url = req.url.replace('/nirvana/', '/nirvana-workspace/nirvana/');
+   
+        req.url = req.url.replace('/phoenix/src/', '/nirvana-workspace/phoenix/src/');
+
     }
 
     // 需要重新解析为修改后的URL

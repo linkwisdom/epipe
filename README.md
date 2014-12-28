@@ -20,6 +20,7 @@ epipe
 
 > epipe port=8188 mod=fengchao conser
 
+> 【使用更新】新版支持默认使用启动目录下文件`edp-rules.js`作为默认规则文件
 
 ## 参数说明
 

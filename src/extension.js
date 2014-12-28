@@ -12,7 +12,7 @@ exports.include = function (modFile, cwd) {
         if (pipe.name) {
             pipe.fiddle(fiddle.name);
         }
-        return fiddle.name;
+        return fiddle;
     } catch(ex) {
         console.error(ex);
     }
