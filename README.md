@@ -20,7 +20,7 @@ epipe
 
 > epipe port=8189 mod=fengchao conser
 
-> 【使用更新】新版支持默认使用启动目录下文件`edp-rules.js`作为默认规则文件
+> 【使用更新】新版支持默认使用启动目录下文件`epipe-rules.js`作为默认规则文件
 
 ## 参数说明
 
@@ -98,7 +98,8 @@ epipe
     - http 代理 `127.0.0.1 8189`
     - 确保'跳过本地地址的代理服务器'
     - 建议用pac方式配置
-    - 参考内部代理pac http://uedc.baidu.com/proxy
+    - 参考内部代理pac http://uedc.baidu.com/proxy [内部bae不稳定]；
+    - 改为线上服务[http://liandong.org/proxy.pac](http://liandong.org/proxy.pac)[稳定线上地址]
     - 联调 fctest配置host为对应服务器IP地址即可
 
 - 访问任意网站，在epipe命令中输入`showlog`检查是否显示历史记录
