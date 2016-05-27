@@ -27,14 +27,14 @@ service.direct = function (req, resp) {
         req.pipe(x);
 
         if (req.url.indexOf('.html') > -1) {
-            var pname = req.query.pathname.match(/[\w\-]+\.html$/);
-            if (pname) {
-                pname = pname[0];
-                console.log(pname);
-                x.pipe(require('fs').createWriteStream(pname));
-            }
+            // var pname = req.query.pathname.match(/[\w\-]+\.html$/);
+            // if (pname) {
+            //     pname = pname[0];
+            //     console.log(pname);
+            //     x.pipe(require('fs').createWriteStream(pname));
+            // }
             
-            // x.pipe(resp);
+            x.pipe(resp);
             resp.end('');
         } else {
             x.pipe(resp);

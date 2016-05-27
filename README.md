@@ -18,9 +18,12 @@ epipe
 
 ### 使用
 
-> epipe port=8189 mod=fengchao conser
+- 1. 建议用法：在项目目录中建立规则文件`epipe-rules.js`直接执行命令`epipe`即可，规则文件参考`epipe/epipe-rules.js`
+- 2. 制定规则文件用法、执行命令`epipe file=custom-rule.js`, 文件相对命令当前目录
 
-> 【使用更新】新版支持默认使用启动目录下文件`epipe-rules.js`作为默认规则文件
+- 3. 使用规则集合，自由切换
+
+> epipe port=8189 mod=fengchao conser
 
 ## 参数说明
 

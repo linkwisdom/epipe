@@ -4,7 +4,7 @@
   },
   "name": "epipe",
   "description": "epipe - elabrary http-request pipe for debug or monitor",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "git://github.com/linkwisdom/epipe.git"
